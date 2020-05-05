@@ -182,11 +182,10 @@ var vizInit = function () {
 
             makeRoughGround(plane, modulate(upperAvgFr, 0, 1, 0.5, 4));
             makeRoughGround(plane2, modulate(lowerMaxFr, 0, 1, 0.5, 4));
-
             makeRoughBall(design, modulate(Math.pow(lowerMaxFr, 0.8), 0, 1, 0, 8), modulate(upperAvgFr, 0, 1, 0, 4));
 
             group.rotation.y += 0.005;
-            controls.update();
+            //controls.update();
             renderer.render(scene, camera);
             requestAnimationFrame(render);
         }
@@ -195,11 +194,24 @@ var vizInit = function () {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
+        }       
+        var counter=0.05;
+        var pos=0;
         function makeRoughBall(mesh, bassFr, treFr) {
-
-            mesh.scale.setScalar(treFr * 1.8 + bassFr * 1.1);
+            //jerk maths
+            if(pos>=1 || pos<=-1)
+            {
+                counter= -counter;
+                pos=pos+counter*bassFr;
+            }
+            else
+            {
+                pos=pos+counter*bassFr;
+            }
+            var amp=pos;
+            console.log(amp);
+            mesh.position.set(0,0,amp);
+            mesh.scale.setScalar(0.8+treFr * 1.5 + bassFr * 0.6);
             mesh.geometry.verticesNeedUpdate = true;
             mesh.geometry.normalsNeedUpdate = true;
             mesh.geometry.computeVertexNormals();
