@@ -204,7 +204,7 @@ var vizInit = function () {
                 counter = -counter;
                 pos = pos + counter * bassFr;
             }
-            else {
+            else { 
                 pos = pos + counter * bassFr;
             }
             var amp = pos;
