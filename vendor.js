@@ -29,7 +29,7 @@ var vizInit = function () {
         var analyser = context.createAnalyser();
         src.connect(analyser);
         analyser.connect(context.destination);
-        analyser.fftSize = 512;
+        analyser.fftSize = 1024;
         var bufferLength = analyser.frequencyBinCount;
         var dataArray = new Uint8Array(bufferLength);
 
@@ -209,8 +209,8 @@ var vizInit = function () {
             }
             var amp = pos;
             //console.log(amp);
-            mesh.position.set(0, 0, amp * 0.8);
-            mesh.scale.setScalar(0.8 + treFr * 1.5 + bassFr * 0.6);
+            mesh.position.set(0, 0, amp * 1.8);
+            mesh.scale.setScalar(0.8 + treFr * 0.7 + bassFr * 1.5);
             mesh.geometry.verticesNeedUpdate = true;
             mesh.geometry.normalsNeedUpdate = true;
             mesh.geometry.computeVertexNormals();
