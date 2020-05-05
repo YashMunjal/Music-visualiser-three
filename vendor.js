@@ -154,7 +154,8 @@ var vizInit = function () {
         spotLight.lookAt(design);
         spotLight.castShadow = true;
         scene.add(spotLight);
-
+       // var axesHelper = new THREE.AxesHelper(40);
+        //group.add(axesHelper);
         scene.add(group);
 
         document.getElementById('out').appendChild(renderer.domElement);
@@ -194,24 +195,22 @@ var vizInit = function () {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
-        }       
-        var counter=0.05;
-        var pos=0;
+        }
+        var counter = 0.05;
+        var pos = 0;
         function makeRoughBall(mesh, bassFr, treFr) {
             //jerk maths
-            if(pos>=1 || pos<=-1)
-            {
-                counter= -counter;
-                pos=pos+counter*bassFr;
+            if (pos >= 0.5 || pos <= -0.5) {
+                counter = -counter;
+                pos = pos + counter * bassFr;
             }
-            else
-            {
-                pos=pos+counter*bassFr;
+            else {
+                pos = pos + counter * bassFr;
             }
-            var amp=pos;
+            var amp = pos;
             //console.log(amp);
-            mesh.position.set(0,0,amp*1.4);
-            mesh.scale.setScalar(0.8+treFr * 1.5 + bassFr * 0.6);
+            mesh.position.set(0, 0, amp * 0.8);
+            mesh.scale.setScalar(0.8 + treFr * 1.5 + bassFr * 0.6);
             mesh.geometry.verticesNeedUpdate = true;
             mesh.geometry.normalsNeedUpdate = true;
             mesh.geometry.computeVertexNormals();
