@@ -209,8 +209,8 @@ var vizInit = function () {
                 pos=pos+counter*bassFr;
             }
             var amp=pos;
-            console.log(amp);
-            mesh.position.set(0,0,amp);
+            //console.log(amp);
+            mesh.position.set(0,0,amp*1.4);
             mesh.scale.setScalar(0.8+treFr * 1.5 + bassFr * 0.6);
             mesh.geometry.verticesNeedUpdate = true;
             mesh.geometry.normalsNeedUpdate = true;
